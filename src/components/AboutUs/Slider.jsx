@@ -69,26 +69,24 @@ const AutoSlider = () => {
       </div>
 
       {/* Bottom Section with Swiper */}
-      {/* <div className="justify-center items-center bg-gray-500 mx-auto py-12 flex"> */}
-      <div className="justify-center items-center bg-gradient-to-tr from-[#00CFF8] to-[#1a73e8] mx-auto py-12 flex">
-
+      <div className="flex justify-center items-center bg-gradient-to-tr from-[#00CFF8] to-[#1a73e8] h-32">
         <Swiper
           spaceBetween={10}
           slidesPerView="auto"
           centeredSlides={true}
           loop={true}
           autoplay={{ delay: 3000 }}
-          className="w-full"
+          className="w-full max-w-7xl"
         >
           {slides.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="w-80 flex-shrink-0 flex items-center justify-center"
+              className="w-72  flex items-center justify-center"
             >
               <div className="text-center">
                 <div className="relative mb-4">
-                  <div className="bar w-full h-1 bg-gray-200">
-                    <div className="in h-1 bg-blue-900 w-16 animate-progress"></div>
+                  <div className="bar w-40 h-1 bg-gray-200">
+                    <div className="in h-1 bg-blue-900  animate-progress"></div>
                   </div>
                 </div>
                 <h2 className="text-xl font-semibold text-white">
