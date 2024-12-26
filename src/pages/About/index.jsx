@@ -1,9 +1,11 @@
-
+import Slider from "../../components/AboutUs/Slider";
 
 const About = () => {
   return (
-    <div>About</div>
-  )
-}
+    <div>
+      <Slider />
+    </div>
+  );
+};
 
-export default About
+export default About;

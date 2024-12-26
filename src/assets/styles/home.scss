@@ -4,26 +4,26 @@
   
   .nav-section {
     position: relative;
-    height: 856px;
+    height: 50rem;
     background-image: url("/images/home/2.jpg");
-    background-position: center center;
-    background-size: cover; /* Improved responsiveness */
+    background-position: top center;
+    background-size: cover; /* Ensures the image covers the entire container */
     background-repeat: no-repeat;
-    overflow: hidden; /* Prevent overflow issues during zoom animation */
-    animation: zoomBackground 4s ease-in-out forwards; /* Play once and stop at the final state */
-  
-    /* Dark overlay */
+    overflow: hidden; /* Prevents overflow during animation */
+    animation: zoomBackground 4s ease-in-out forwards; /* Zoom animation for effect */
+
+    /* Dark overlay for better readability */
     &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-      z-index: 1; /* Keeps it below the content but above the background */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adds semi-transparent overlay */
+        z-index: 1; /* Ensures it overlays the background image but remains behind content */
     }
-  }
+}
 
   /* Keyframes for the one-time background zoom */
   @keyframes zoomBackground {
@@ -60,10 +60,10 @@
   .nav-item::after {
     content: "";
     position: absolute;
-    bottom: -4px;
+    bottom: -0.25rem;
     left: 0;
     width: 0;
-    height: 3px;
+    height: 0.188rem;
     background-color: #54ACDF;
     transition: width 0.3s ease;
   }
@@ -268,12 +268,141 @@
       transform: translateX(-50%);
     }
   }
+  .why_choose_section{
+    background-image: url('/images/home/bg_choice.png');
+    height: 450px;
+    background-position: center center;
+    background-size: cover; /* Improved responsiveness */
+    background-repeat: no-repeat;
+    overflow: hidden;
+    text-align: center;
+  }
+  .contact_form{
+    padding: 20px;
+    background-color: #54ACDF;
+    // background-color: linear-gradient(45deg, #54ACDF, #7BC3E2);  
+  }
+  .choose_line {
+    display: block;
+    text-align: center;
+    height: 2px; /* Line thickness */
+    background-color: white; /* Line color */
+    width: 20px; /* Line width */
+    margin: 20px 0; /* Optional spacing around the line */
+  }
+  .bottom_image_box {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers content vertically */
+    background-image: url("/images/home/Group-41399.png");
+    height: 300px;
+    position: absolute;
+    // bottom: -220px;
+    width: 80%;
+    background-size: cover; /* Ensures the image fills the box */
+    background-position: center; /* Centers the image */
+    left: 50%; /* Moves the box to the horizontal center */
+    transform: translateX(-50%); /* Adjusts for the box's own width */
+  }
+  
+  .project_user{
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    font-size: 27px;
+  }
+
   .whatsappicon{
     position: fixed;
     bottom: 5px;
     right: 2%;
+    z-index: 1000;
   }
   @media screen and (max-width: 768px) {
+    .nav-section{
+      // 
+      height: 100%;
+      width: 100%;
+    }
+    .second_section_text3{
+      margin-bottom: 10px !important;
+    }
+    .nav_content{
+      padding: 10px 10px;
+    }
+    .nav_content .above_content{
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+    .nav_content .above_content::before{
+      width: 20px;
+      padding-left: 40px,
+    }
+    .nav_content .center_content{
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+    }
+    .nav_content .contact_btn {
+      padding: 10px 10px;
+      font-size: 11px;
+    }
+
+    .nav-section {
+      // height: 400px; /* Further reduce height for mobile devices */
+      background-position: top center;
+  }
+  .main_service_content{
+    padding-left: 15px;
+  }
+  .second_section{
+    padding: 10px;
+  }
+  .bottom_box_img_text{
+    font-size: 1.5rem;
+  }
+  .faq_section{
+    text-align: center;
+    padding: 0px 5px;
+    width: 100%;
+    
+  }
+  .choose_section_body{
+    padding: 3px 20px;
+  }
+  .faq_section_title{
+    margin-top: 220px;
+    padding: 10px;
+  }
+  .bottom_image_box{
+    height: 120px;
+    margin-top: 5px;
+  }
+  .choose_section_text1{
+    
+    font-size: 1.5rem;
+    padding-top: 6px;
+    line-height: 30px;
+  }
+  .contact_form{
+    margin-top: 40px;
+  }
+  .choose_section_text0{
+    padding-top: 15px;
+  }
+  .second_section_text2{
+    font-size: 1.5rem;
+  }
+  .marquee-container .marquee .marquee_text{
+    font-size: 40px;
+  }
+  .serv_sub_content{
+    line-height: 30px;
+    font-size: 1.5rem;
+  }
+    .logo_img img{
+      width: 12rem;
+  }
 .main_services{
   padding: 0px;
   // margin-left: auto; margin-right: auto;
@@ -284,6 +413,55 @@
   text-align: center;
 }
 
+  }
+  @media screen and (max-width:991px){
+    .nav-section{
+      // 
+      background-position: top center;
+
+      height: 100%;
+      width: 100%;
+    }
+    .nav_content{
+      padding: 10px 20px;
+    }
+    .center_content{
+      font-size: 35px;
+    }
+    .second_section_text3{
+      margin-bottom: 10px;
+      
+    }
+    .logo_img img{
+      width: 14rem;
+  }
+  .second_section{
+    padding: 25px;
+  }
+  .second_section_text2{
+    font-size: 2rem;
+  }
+  .main_services{
+    // padding: 0px 100px;
+  }
+  .serv_sub_content{
+    font-size: 2rem;
+  }
+  .bottom_image_box{
+    margin-top: 5px;
+    height: 250px;
+  }
+  .choose_section_text1{
+    font-size:2rem ;
+    line-height: 20px;
+    padding-top: 20px;
+  }
+  .choose_section_text0{
+    padding-top: 14px;
+  }
+  .faq_section{
+    padding: 25px;
+  }
   }
   
 }

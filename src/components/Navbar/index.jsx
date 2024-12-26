@@ -1,35 +1,39 @@
-import { Box, Button, Typography,useMediaQuery, useTheme } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu'; 
-import SearchIcon from '@mui/icons-material/Search';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import React from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Link, useLocation } from "react-router-dom";
 
 const routes = [
-  {
-    name: "Home",
-    route: "/",
-  },
-  {
-    name: "About Us",
-    route: "/about",
-  },
-  {
-    name: "Services",
-    route: "/services",
-  },
-  {
-    name: "Coverage",
-    route: "/coverage",
-  },
+  { name: "Home", route: "/" },
+  { name: "About Us", route: "/about" },
+  { name: "Services", route: "/services" },
+  { name: "Coverage", route: "/coverage" },
 ];
 
 const Navbar = () => {
   const location = useLocation();
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // Check if the screen is small
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  // const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [openMenu, setOpenMenu] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
 
   return (
     <Box
@@ -37,56 +41,87 @@ const Navbar = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        fontFamily: "'Open Sans', Helvetica, sans-serif", // Correct font family syntax
         padding: "1rem 2rem",
-        // You can adjust this color as needed
+        color: "white",
+        
       }}
-      className="content-spacing"
     >
-      <Box>
-        <img src="/images/logo.png" alt="Logo" style={{ maxWidth: "20rem" }} />
+      {/* Logo */}
+      <Box className="logo_img">
+        <img src="/images/only_text.png" alt="Logo" style={{ maxWidth: "20rem" }} />
       </Box>
 
-      {/* Conditionally render the navigation items or hamburger menu */}
+      {/* Responsive Navigation */}
       {isSmallScreen ? (
-        // Hamburger Menu for small screen
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button onClick={() => setOpenMenu(!openMenu)} sx={{ color: 'white' }}>
+        <>
+          {/* Hamburger Menu Icon */}
+          <IconButton onClick={toggleDrawer(true)} sx={{ color: "white" }}>
             <MenuIcon />
-          </Button>
-          {/* Show menu when openMenu is true */}
-          {openMenu && (
-            <Box sx={{ position: 'absolute', top: '60px', right: '20px', backgroundColor: 'white', p: 2, borderRadius: 2 }}>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
+          </IconButton>
+
+          {/* Drawer Component */}
+          <Drawer
+            anchor="right"
+            open={drawerOpen}
+            onClose={toggleDrawer(false)}
+          >
+            <Box
+              sx={{
+                width: 250,
+                padding: "1rem",
+                backgroundColor: "white",
+                height: "100%",
+              }}
+              role="presentation"
+              onClick={toggleDrawer(false)}
+              onKeyDown={toggleDrawer(false)}
+            >
+              <List>
                 {routes.map((value) => (
-                  <li key={value.name} style={{ margin: '1rem 0' }}>
-                    <Link to={value.route} style={{ textDecoration: "none", color: "black" }}>
-                      <Typography>{value.name}</Typography>
+                  <ListItem button key={value.name}>
+                    <Link
+                      to={value.route}
+                      style={{
+                        textDecoration: "none",
+                        color: location.pathname === value.route ? "blue" : "black",
+                        fontWeight: location.pathname === value.route ? "bold" : "normal",
+                      }}
+                    >
+                      <ListItemText primary={value.name} />
                     </Link>
-                  </li>
+                  </ListItem>
                 ))}
-              </ul>
+              </List>
             </Box>
-          )}
-        </Box>
+          </Drawer>
+        </>
       ) : (
-        // Navigation items for larger screens
+        // Desktop Navigation
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <ul style={{ display: "flex", padding: 0, margin: 0 }}>
+          <ul
+            style={{
+              display: "flex",
+              padding: 0,
+              margin: 0,
+              listStyle: "none",
+            }}
+          >
             {routes.map((value) => (
               <Link
                 key={value.name}
                 to={value.route}
-                style={{ textDecoration: "none" }}
+                style={{
+                  textDecoration: "none",
+                  marginRight: "1.5rem",
+                }}
               >
                 <li
                   className={`nav-item ${
                     location.pathname === value.route ? "active" : ""
                   }`}
                   style={{
-                    marginRight: "1.5rem",
-                    color: "white",
-                    fontWeight: "bold",
+                    color: location.pathname === value.route ? "white" : "white",
+                    fontWeight: location.pathname === value.route ? "bold" : "normal",
                   }}
                 >
                   {value.name}
@@ -94,29 +129,23 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
-          <SearchIcon fontSize="medium" sx={{ color: 'white', ml: 2 }} />
-          <Box>
-            <Button
-              variant="contained"
-              sx={{
-                p: 1.9,
-                pl: 3.5,
-                pr: 3.5,
-                ml: 2,
-                fontSize: "0.9rem",
-                background: "black",
-                fontWeight: "600",
-              }}
-            >
-              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                Contact Us
-              </Typography>
-              <ArrowForwardIosIcon ml={2} fontSize="small" />
-            </Button>
-          </Box>
+          <SearchIcon fontSize="medium" sx={{ color: "white", ml: 2 }} />
+          <Button
+            variant="contained"
+            sx={{
+              p: 1.5,
+              ml: 2,
+              background: "black",
+              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            Contact Us
+            <ArrowForwardIosIcon sx={{ fontSize: "small", ml: 1 }} />
+          </Button>
         </Box>
       )}
-      
     </Box>
   );
 };
