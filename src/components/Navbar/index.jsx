@@ -43,12 +43,15 @@ const Navbar = () => {
         alignItems: "center",
         padding: "1rem 2rem",
         color: "white",
-        
       }}
     >
       {/* Logo */}
       <Box className="logo_img">
-        <img src="/images/only_text.png" alt="Logo" style={{ maxWidth: "20rem" }} />
+        <img
+          src="/images/only_text.png"
+          alt="Logo"
+          style={{ maxWidth: "20rem" }}
+        />
       </Box>
 
       {/* Responsive Navigation */}
@@ -83,8 +86,10 @@ const Navbar = () => {
                       to={value.route}
                       style={{
                         textDecoration: "none",
-                        color: location.pathname === value.route ? "blue" : "black",
-                        fontWeight: location.pathname === value.route ? "bold" : "normal",
+                        color:
+                          location.pathname === value.route ? "blue" : "black",
+                        fontWeight:
+                          location.pathname === value.route ? "bold" : "normal",
                       }}
                     >
                       <ListItemText primary={value.name} />
@@ -120,8 +125,10 @@ const Navbar = () => {
                     location.pathname === value.route ? "active" : ""
                   }`}
                   style={{
-                    color: location.pathname === value.route ? "white" : "white",
-                    fontWeight: location.pathname === value.route ? "bold" : "normal",
+                    color:
+                      location.pathname === value.route ? "white" : "white",
+                    fontWeight:
+                      location.pathname === value.route ? "bold" : "normal",
                   }}
                 >
                   {value.name}

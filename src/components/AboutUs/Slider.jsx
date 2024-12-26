@@ -1,34 +1,66 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css"; // Import Swiper styles
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { motion } from "framer-motion"; // Import framer-motion for animation
 
 const AutoSlider = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer to trigger zoom-in animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect(); // Stop observing once it's in view
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger animation when 50% of the element is visible
+    );
+
+    const section = document.querySelector("#autoSliderSection");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
   const slickSettings = {
     infinite: true,
-    speed: 1000,
+    speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
   };
 
-  const slides = [
-    { id: 1, label: "Innovation" },
-    { id: 2, label: "Excellence" },
-    { id: 3, label: "Collaboration" },
-    { id: 4, label: "Customer-Centric" },
-  ];
-
   return (
-    <main>
-      {/* Top Section with Slick Slider */}
-      <div className="relative bg-[url('/images/about/aboutbg.jpg')] h-96 bg-cover bg-center text-white overflow-hidden">
+    <main className="relative bg-[url('/images/about/aboutbg.jpg')]  h-full md:h-96 bg-cover bg-center">
+      <div
+        id="autoSliderSection"
+        className={` text-white overflow-hidden ${
+          isVisible ? "animate-zoom-in" : ""
+        }`}
+      >
         <div className="absolute inset-0 bg-white/5"></div>
+
+        {/* Slider Content */}
         <div className="relative z-10 h-full mt-20">
           <Slider {...slickSettings}>
-            <div className="h-full flex items-center justify-start px-6 md:px-12">
-              <div className="max-w-lg">
-                <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-4 leading-tight">
+            <div className="h-96 flex items-center justify-start px-6 md:px-12">
+              <motion.div
+                className="max-w-lg"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 leading-tight">
                   Elevating Businesses with Exceptional Solutions
                 </h1>
                 <p className="text-sm md:text-base text-gray-300 leading-relaxed">
@@ -37,11 +69,16 @@ const AutoSlider = () => {
                   services empower clients to achieve their goals with
                   efficiency and precision.
                 </p>
-              </div>
+              </motion.div>
             </div>
-            <div className="h-full flex items-center justify-start px-6 md:px-12">
-              <div className="max-w-lg">
-                <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-4 leading-tight">
+            <div className="h-96 flex items-center justify-start px-6 md:px-12">
+              <motion.div
+                className="max-w-lg"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 leading-tight">
                   Empowering Businesses, One Solution at a Time
                 </h1>
                 <p className="text-sm md:text-base text-gray-300 leading-relaxed">
@@ -49,11 +86,16 @@ const AutoSlider = () => {
                   cutting-edge SaaS solutions, driving growth and success at
                   every step.
                 </p>
-              </div>
+              </motion.div>
             </div>
-            <div className="h-full flex items-center justify-start px-6 md:px-12">
-              <div className="max-w-lg">
-                <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-4 leading-tight w-[80%]">
+            <div className="h-96 flex items-center justify-start px-6 md:px-12">
+              <motion.div
+                className="max-w-lg"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 w-[80%] leading-tight">
                   Pioneering the Future of IT Solutions
                 </h1>
                 <p className="text-sm md:text-base text-gray-300 leading-relaxed">
@@ -62,40 +104,10 @@ const AutoSlider = () => {
                   transformative IT solutions that enable businesses to thrive
                   globally.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </Slider>
         </div>
-      </div>
-
-      {/* Bottom Section with Swiper */}
-      <div className="flex justify-center items-center bg-gradient-to-tr from-[#00CFF8] to-[#1a73e8] h-32">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView="auto"
-          centeredSlides={true}
-          loop={true}
-          autoplay={{ delay: 3000 }}
-          className="w-full max-w-7xl"
-        >
-          {slides.map((slide) => (
-            <SwiperSlide
-              key={slide.id}
-              className="w-72  flex items-center justify-center"
-            >
-              <div className="text-center">
-                <div className="relative mb-4">
-                  <div className="bar w-40 h-1 bg-gray-200">
-                    <div className="in h-1 bg-blue-900  animate-progress"></div>
-                  </div>
-                </div>
-                <h2 className="text-xl font-semibold text-white">
-                  {slide.label}
-                </h2>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </main>
   );

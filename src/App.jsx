@@ -1,8 +1,7 @@
-import RouterView from "./router"
+import RouterView from "./router";
 
 function App() {
-
-  return <RouterView/>
+  return <RouterView />;
 }
 
-export default App
+export default App;
