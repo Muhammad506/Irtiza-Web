@@ -15,6 +15,8 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
+
 import Navbar from "../../components/Navbar";
 import ServiceCard from "../../components/ServiceCard";
 import Footer from "../../components/Footer";
@@ -269,6 +271,8 @@ const Home = () => {
           {/* Buttons */}
           <Box sx={{ display: "flex", justifyContent: "start", gap: 2 }}>
             <Button
+             component={Link} // This makes the button behave like a Link
+            to="/services"
               variant="contained"
               sx={{
                 px: 4,
@@ -285,6 +289,8 @@ const Home = () => {
               <ArrowForwardIosIcon sx={{ ml: 1, fontSize: "small" }} />
             </Button>
             <Button
+              component={Link} // This makes the button behave like a Link
+            to="/contact"
               variant="contained"
               sx={{
                 px: 4,
@@ -527,8 +533,9 @@ const Home = () => {
       </Box>
 
       <Box className="why_choose_section">
+
         <Typography
-          className="choose_section_text0"
+          className='choose_section_text0'
           sx={{
             textAlign: "center",
             paddingTop: "40px",
@@ -540,66 +547,53 @@ const Home = () => {
             "&:after": {
               content: '""',
               display: "block",
-              width: "50px", // Line width
-              height: "2px", // Line thickness
+              width: "50px",        // Line width
+              height: "2px",        // Line thickness
               backgroundColor: "white",
               margin: "8px auto 0", // Spacing above and centering the line
-            },
+            }
           }}
         >
           Why Choose Us
         </Typography>
 
-        <Typography
-          variant="h2"
-          className="choose_section_text1"
-          sx={{
-            paddingTop: "30px",
-            color: "white",
-            fontSize: "45px",
-            fontWeight: "bold",
-            lineHeight: "50px",
-            textAlign: "center",
-          }}
-        >
+        <Typography variant='h2' className='choose_section_text1' sx={{
+          paddingTop: "30px",
+          color: "white", fontSize: "45px", fontWeight: "bold", lineHeight: "50px", textAlign: "center"
+        }}>
+
           Companies Excited With Our Solutions
         </Typography>
 
-        <Box
-          className="choose_section_body"
-          sx={{ paddingTop: "40px", px: "80px", paddingBottom: "40px" }}
-        >
+        <Box className="choose_section_body" sx={{ paddingTop: "40px", px: "80px", paddingBottom: "40px" }}>
           <Grid container spacing={2}>
             {[
-              {
-                src: "/images/home/success.png",
-                value: "120+",
-                label: "Projects Completed",
-              },
-              {
-                src: "/images/home/rating-3.png",
-                value: "50+",
-                label: "Active Clients",
-              },
-              {
-                src: "/images/home/group-chat-1-1.png",
-                value: "200+",
-                label: "Expert Team",
-              },
-              {
-                src: "/images/home/rating-4.png",
-                value: "50+",
-                label: "Happy Clients",
-              },
+              { src: "/images/home/success.png", value: "120+", label: "Projects Completed" },
+              { src: "/images/home/rating-3.png", value: "50+", label: "Active Clients" },
+              { src: "/images/home/group-chat-1-1.png", value: "200+", label: "Expert Team" },
+              { src: "/images/home/rating-4.png", value: "50+", label: "Happy Clients" },
             ].map((item, index) => (
-              <Grid item xs={6} md={3} key={index}>
-                <Box sx={{ textAlign: "center" }}>
+              <Grid
+                item
+                xs={6}
+                md={3}
+                key={index}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center", // Ensures horizontal centering
+                  textAlign: "center",  // Centers text within the box
+                }}
+              >
+                <Box>
                   <Box
                     component="img"
                     src={item.src}
                     alt=""
                     width={70}
                     sx={{
+                      margin: "0 auto", // Centers the image horizontally
                       transition: "transform 0.7s ease",
                       "&:hover": {
                         transform: "translateX(10px)",
@@ -608,15 +602,18 @@ const Home = () => {
                   />
                   <Typography
                     className="project_user"
-                    sx={{ fontSize: "1.5rem", fontWeight: "bold" }}
+                    sx={{ fontSize: "1.5rem", fontWeight: "bold", mt: 2 }}
                   >
                     {item.value}
                   </Typography>
-                  <Typography sx={{ color: "white" }}>{item.label}</Typography>
+                  <Typography sx={{ color: "white", mt: 1 }}>{item.label}</Typography>
                 </Box>
               </Grid>
+
+
             ))}
           </Grid>
+
 
           <Box sx={{ justifyContent: "center", width: "100%" }}>
             <Box className="bottom_image_box" sx={{}}>
@@ -643,6 +640,7 @@ const Home = () => {
               </Box>
             </Box>
           </Box>
+
         </Box>
       </Box>
 
@@ -962,7 +960,7 @@ const Home = () => {
                 label="Message"
                 multiline
                 rows={4}
-                // defaultValue="Default Value"
+              // defaultValue="Default Value"
               />
               <Button
                 variant="contained"

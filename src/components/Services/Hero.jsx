@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import Navbar from '../../components/Navbar';
+
 
 const Hero = () => {
   return (
@@ -6,6 +8,9 @@ const Hero = () => {
       {/* Top section with dark overlay */}
       <div className="relative bg-[url('https://img.freepik.com/free-photo/ai-technology-brain-background-digital-transformation-concept_53876-124672.jpg?t=st=1735118019~exp=1735121619~hmac=dee0a98167a1d2ba1f56e5b7cda079ac188fdd5645284ad683f864f9f7b4ad4b&w=900')] bg-cover bg-center h-80 lg:h-[400px] text-white">
         {/* Overlay */}
+        <div className="relative z-20">
+          <Navbar />
+        </div>
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}

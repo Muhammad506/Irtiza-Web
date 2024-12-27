@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import Navbar from "../../components/Navbar"
+
 import { motion } from "framer-motion"; // Import framer-motion for animation
 
 const AutoSlider = () => {
@@ -42,12 +44,17 @@ const AutoSlider = () => {
 
   return (
     <main className="relative bg-[url('/images/about/aboutbg.jpg')]  h-full md:h-96 bg-cover bg-center">
+       <div className="relative z-20">
+          <Navbar />
+        </div>
       <div
         id="autoSliderSection"
         className={` text-white overflow-hidden ${
           isVisible ? "animate-zoom-in" : ""
         }`}
       >
+        
+       
         <div className="absolute inset-0 bg-white/5"></div>
 
         {/* Slider Content */}

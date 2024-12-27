@@ -130,7 +130,7 @@
      margin-bottom: 50px;
     // display: flex;
    
-    padding: 0px 150px;
+    // padding: 0px 150px;
   }
   .serv_sub_content{
     line-height: 46px;
@@ -316,9 +316,20 @@
   .whatsappicon{
     position: fixed;
     bottom: 5px;
-    right: 2%;
+    right: 3%;
     z-index: 1000;
   }
+  // @media screen and (max-width: 600px){
+  //         .choose_section_text1{
+  //           font-size: 1.3rem;
+  //           padding-top: 2px;
+  //           line-height:35px;
+
+  //         }
+          
+    
+
+  // }
   @media screen and (max-width: 768px) {
     .nav-section{
       // 
@@ -353,7 +364,10 @@
       background-position: top center;
   }
   .main_service_content{
-    padding-left: 15px;
+    padding-left: 22px;
+  }
+  .main_services{
+    padding: 0px 12px !important;
   }
   .second_section{
     padding: 10px;
@@ -380,9 +394,9 @@
   }
   .choose_section_text1{
     
-    font-size: 1.5rem;
-    padding-top: 6px;
-    line-height: 30px;
+    font-size: 1.4rem;
+    padding-top: 4px;
+    line-height: 40px;
   }
   .contact_form{
     margin-top: 40px;
@@ -403,7 +417,9 @@
     .logo_img img{
       width: 12rem;
   }
+ 
 .main_services{
+  padding-left: "35px";
   padding: 0px;
   // margin-left: auto; margin-right: auto;
   // padding-left: auto;
@@ -452,9 +468,9 @@
     height: 250px;
   }
   .choose_section_text1{
-    font-size:2rem ;
-    line-height: 20px;
-    padding-top: 20px;
+    font-size:1.6rem ;
+    line-height: 25px;
+    padding-top: 16px;
   }
   .choose_section_text0{
     padding-top: 14px;
@@ -462,6 +478,7 @@
   .faq_section{
     padding: 25px;
   }
+  
   }
   
 }

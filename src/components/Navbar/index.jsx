@@ -1,18 +1,21 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   Box,
   Button,
-  // Typography,
   useMediaQuery,
   useTheme,
   Drawer,
   IconButton,
+  InputBase,
+ 
   List,
   ListItem,
   ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
+
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Link, useLocation } from "react-router-dom";
 
@@ -22,19 +25,30 @@ const routes = [
   { name: "Services", route: "/services" },
   { name: "Coverage", route: "/coverage" },
   { name: "Contact us", route: "/contact" },
+  { name: "Privacy Policy", route: "/privacy" },
 ];
 
 const Navbar = () => {
   const location = useLocation();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  // const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
+  
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const searchDrawer = (open) => () => {
+    setIsDrawerOpen(open);
+  };
+
+
+  const visibleRoutes = routes.filter(
+    (route) => route.name !== "Contact us" && route.name !== "Privacy Policy"
+  );
 
   return (
     <Box
@@ -55,6 +69,7 @@ const Navbar = () => {
       {isSmallScreen ? (
         <>
           {/* Hamburger Menu Icon */}
+          
           <IconButton onClick={toggleDrawer(true)} sx={{ color: "white" }}>
             <MenuIcon />
           </IconButton>
@@ -108,7 +123,8 @@ const Navbar = () => {
               listStyle: "none",
             }}
           >
-            {routes.map((value) => (
+           {visibleRoutes.map((value) => 
+ (
               <Link
                 key={value.name}
                 to={value.route}
@@ -133,8 +149,48 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
-          <SearchIcon fontSize="medium" sx={{ color: "white", ml: 2 }} />
-          <Button
+          <IconButton onClick={searchDrawer(true)} sx={{ color: "white" }}>
+        <SearchIcon fontSize="medium" />
+      </IconButton>
+
+      {/* Drawer Component */}
+      <Drawer
+        anchor="top"
+        open={isDrawerOpen}
+        onClose={searchDrawer(false)}
+      >
+        <Box
+          sx={{
+            height: "150px",
+            padding: "1rem",
+            backgroundColor: "#f5f5f5",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {/* Close Icon */}
+          <IconButton
+            onClick={searchDrawer(false)}
+            sx={{ alignSelf: "flex-end", marginBottom: "1rem" }}
+          >
+            <CloseIcon />
+          </IconButton>
+
+          {/* Search Input */}
+          <InputBase
+            placeholder="Search..."
+            sx={{
+              width: "80%",
+              padding: "0.5rem",
+              backgroundColor: "white",
+              borderRadius: "5px",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+          />
+        </Box>
+      </Drawer>          <Button
             component={Link} // This makes the button behave like a Link
             to="/contact" // This specifies the route
             variant="contained"

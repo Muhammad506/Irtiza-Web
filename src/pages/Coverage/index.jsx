@@ -17,7 +17,7 @@ const Coverage = () => {
             color: "white",
             // py: 5,
             px: { xs: 0, sm: 5, md: 10 },
-            py: { xs: 0, md: 10 },
+            py: { xs: 0, md: 5 },
           }}
         >
           {/* Heading */}
@@ -37,10 +37,11 @@ const Coverage = () => {
             variant="body1"
             sx={{
               mx: { xs: 2, sm: 4, md: 0 },
-              fontSize: { xs: "0.8rem", md: "1.25rem" },
+              fontSize: { xs: "0.75rem",sm:"0.8rem", md: "1.25rem" },
               fontWeight: "300",
               lineHeight: 1.5,
               pr: { md: 35 },
+              
               textAlign: { xs: "center", md: "justify" },
               maxWidth: "800px",
             }}
@@ -57,7 +58,7 @@ const Coverage = () => {
         variant="h2"
         sx={{
           color: "#54ACDF",
-          fontSize: { xs: "1.75rem", md: "2.5rem" },
+          fontSize: { xs: "1.75rem", md: "2rem",lg:"2.4rem" },
           fontWeight: "bold",
           textAlign: "center",
           mt: 4,
@@ -72,7 +73,7 @@ const Coverage = () => {
         className="coverage_para"
         variant="h6"
         sx={{
-          px: { xs: 2, sm: 4, md: 0 },
+          px: { xs: 3, sm: 4, md: 0 },
           textAlign: "center",
           lineHeight: 1.5,
           fontSize: { xs: "0.9rem", md: "1.2rem" },
@@ -80,7 +81,7 @@ const Coverage = () => {
           paddingX: {
             xs: 2,
             sm: 3,
-            md: 25,
+            md: 10,
           },
 
           fontWeight: 700,

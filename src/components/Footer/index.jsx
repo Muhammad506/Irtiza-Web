@@ -7,12 +7,27 @@ import HomeIcon from '@mui/icons-material/Home';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
+
+const routes = [
+  { name: "Home", route: "/" },
+  { name: "About Us", route: "/about" },
+  { name: "Services", route: "/services" },
+  { name: "Coverage", route: "/coverage" },
+  { name: "Contact us", route: "/contact" },
+  { name: "Privacy Policy", route: "/privacy" },
+
+];
+
 const Footer = () => {
+  const visibleRoutes = routes.filter(
+    (route) => route.name !== "Contact us" && route.name !== "Privacy Policy"
+  );
+
   return (
-    <Box sx={{ backgroundColor: "#54ACDF", color: "white",marginTop:"60px", padding: "4rem 6rem",paddingBottom:"0px" }}>
+    <Box sx={{ backgroundColor: "#54ACDF", color: "white", marginTop: "60px", padding: "4rem 6rem", paddingBottom: "0px" }}>
       <Grid container spacing={4}>
         {/* Logo and Social Icons */}
-        <Grid item xs={12}  md={6} lg={3}>
+        <Grid item xs={12} md={6} lg={3}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             Logo
           </Typography>
@@ -38,26 +53,13 @@ const Footer = () => {
             Quick Links
           </Typography>
           <Box sx={{ marginTop: "1rem" }}>
-            <Typography sx={{padding:"4px 0px"}}>
-              <Link href="#" color="inherit" underline="none">
-                Home
-              </Link>
-            </Typography>
-            <Typography sx={{padding:"4px 0px"}}>
-              <Link href="#" color="inherit" underline="none">
-                About Us
-              </Link>
-            </Typography>
-            <Typography sx={{padding:"4px 0px"}}>
-              <Link href="#" color="inherit" underline="none">
-                Services
-              </Link>
-            </Typography>
-            <Typography sx={{padding:"4px 0px"}}>
-              <Link href="#" color="inherit" underline="none">
-                Coverage
-              </Link>
-            </Typography>
+            {visibleRoutes.map((route) => (
+              <Typography key={route.route} sx={{ padding: "4px 0px" }}>
+                <Link href={route.route} color="inherit" underline="none">
+                  {route.name}
+                </Link>
+              </Typography>
+            ))}
           </Box>
         </Grid>
 
@@ -68,12 +70,14 @@ const Footer = () => {
           </Typography>
           <Box sx={{ marginTop: "1rem" }}>
             <Typography>
-              <Link href="#" color="inherit" underline="none">
+              {/* Update the href with the correct route */}
+              <Link href="/privacy" color="inherit" underline="none">
                 Privacy & Policy
               </Link>
             </Typography>
           </Box>
         </Grid>
+
 
         {/* Contact Us */}
         <Grid item xs={12} md={6} lg={3}>
@@ -81,23 +85,23 @@ const Footer = () => {
             Contact Us
           </Typography>
           <Box sx={{ marginTop: "1rem" }}>
-            <Box sx={{display:"flex",padding:"4px 0px" }}>
-            <HomeIcon /> <Typography sx={{paddingLeft:"20px"}}> 85 Great Portland Street, First Floor, London, United Kingdom, W1W 7LT</Typography>
+            <Box sx={{ display: "flex", padding: "4px 0px" }}>
+              <HomeIcon /> <Typography sx={{ paddingLeft: "20px" }}> 85 Great Portland Street, First Floor, London, United Kingdom, W1W 7LT</Typography>
 
             </Box>
-            <Box sx={{display:"flex",padding:"4px 0px" }}>
-            <EmailIcon /><Typography sx={{paddingLeft:"20px"}}><Link href="mailto:Evoprimetech.com" color="inherit">Evoprimetech.com</Link></Typography>
+            <Box sx={{ display: "flex", padding: "4px 0px" }}>
+              <EmailIcon /><Typography sx={{ paddingLeft: "20px" }}><Link href="mailto:Evoprimetech.com" color="inherit">Evoprimetech.com</Link></Typography>
 
             </Box>
-            <Box sx={{display:"flex",padding:"10px 0px" }}>
-            <LocalPhoneIcon />  <Typography sx={{paddingLeft:"20px"}}>+447878776579</Typography>
+            <Box sx={{ display: "flex", padding: "10px 0px" }}>
+              <LocalPhoneIcon />  <Typography sx={{ paddingLeft: "20px" }}>+447878776579</Typography>
 
             </Box>
           </Box>
         </Grid>
       </Grid>
-      <Divider sx={{ backgroundColor: "white",marginTop:"50px" }} />
-      <Box sx={{textAlign:"center",padding:"10px 0px"}}>
+      <Divider sx={{ backgroundColor: "white", marginTop: "50px" }} />
+      <Box sx={{ textAlign: "center", padding: "10px 0px" }}>
         <Typography variant="body2">© Copyright 2024 All Right Reserved Evo Primetech</Typography>
       </Box>
     </Box>
