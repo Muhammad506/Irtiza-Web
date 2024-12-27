@@ -3,25 +3,25 @@ import { motion } from "framer-motion";
 const OurPromise = () => {
   const cards = [
     {
-      image: "/images/services/card2-1.jpg",
+      image: "/images/services/card2-1.svg",
       title: "24/7 Service Desk",
       description:
         "Our Australia & Pakistan based Service desk operates 24/7 * 365 days of the year. Your query/request will be responded within seconds via call or emails.",
     },
     {
-      image: "/images/services/card2-2.jpg",
+      image: "/images/services/card2-2.svg",
       title: "Highly Skilled Resources",
       description:
         "Our engineers are highly skilled, professional and up to date with current vendor certifications. We can reassure you that our fix rate is more than 97%.",
     },
     {
-      image: "/images/services/card2-3.jpg",
+      image: "/images/services/card2-3.svg",
       title: "Parts Availability",
       description:
         "We store our parts local to your customer’s premises, which will guarantee you that you wouldn’t be waiting for parts delivery to fix your problem. We will dispatch our engineers with parts for fast delivery of services.",
     },
     {
-      image: "/images/services/card2-4.jpg",
+      image: "/images/services/card2-4.svg",
       title: "Cost Saving",
       description:
         "With our partnership you will have access to our experts at competitive rates globally. By outsourcing your projects, you will get high quality services at low price.",

@@ -101,7 +101,7 @@ const ItSolutions = () => {
           transition={{ duration: 1 }}
         >
           <img
-            src="/images/services/It-Solutions.jpg"
+            src="/images/services/It-Solutions.svg"
             alt="IT Solutions"
             className="w-full h-auto max-w-md shadow-xl rounded-lg object-cover"
           />
