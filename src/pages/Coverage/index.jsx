@@ -1,33 +1,33 @@
-import React from 'react';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import { Box, Typography, Grid, List, ListItem ,Button} from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { Box, Typography, Grid, List, ListItem } from "@mui/material";
 
 const Coverage = () => {
   return (
-    <Box sx={{}}>
-
-<Box className="coverage-section">
+    <Box>
+      {/* Navbar Section */}
+      <Box className="coverage-section" sx={{}}>
         <Navbar />
-        <Box className="nav_content" sx={{ position: 'relative', width: '100%', textAlign: 'start', color: 'white', py: 5, px: 10 }}>
+        <Box
+          className="nav_content"
+          sx={{
+            // px: { xs: 0, sm: 0, md: 0 },
+            width: "100%",
+            textAlign: { xs: "center", md: "start" },
+            color: "white",
+            // py: 5,
+            px: { xs: 0, sm: 5, md: 10 },
+            py: { xs: 0, md: 10 },
+          }}
+        >
           {/* Heading */}
           <Typography
             variant="h4"
             sx={{
-              fontSize: "45px",
-              lineHeight:"66px",
-              letterSpacing: "2px",
-              fontWeight: '800',
-              mb: 1,
-              position: 'relative',
-              display: 'inline-block',
-              // paddingLeft: '70px',
-             
+              fontSize: { xs: "1.5rem", md: "3rem" },
+              fontWeight: "800",
+              mb: { xs: 1, md: 2 },
             }}
-            className="trigger above_content"
           >
             Our Coverage
           </Typography>
@@ -36,123 +36,94 @@ const Coverage = () => {
           <Typography
             variant="body1"
             sx={{
-              fontFamily: 'Open Sans',
-
-              fontSize: "1rem",
-              fontWeight: '300',
-              paddingRight:"500px",
-              mb: 2,
-              lineHeight: "1.3",
-              textTransform: 'capitalize',
-              // fontFamily: 'Poppins',
+              mx: { xs: 2, sm: 4, md: 0 },
+              fontSize: { xs: "0.8rem", md: "1.25rem" },
+              fontWeight: "300",
+              lineHeight: 1.5,
+              pr: { md: 35 },
+              textAlign: { xs: "center", md: "justify" },
+              maxWidth: "800px",
             }}
-            className="trigger center_content"
           >
-           At Evoprime, we are committed to delivering unparalleled global support through our network of 1,200+ engineers and consultants across EMEA, APAC, and North America.
-
+            At Evoprime, we are committed to delivering unparalleled global
+            support through our network of 1,200+ engineers and consultants
+            across EMEA, APAC, and North America.
           </Typography>
-
-        
-        
-         
         </Box>
       </Box>
-      
+
       {/* Title Section */}
       <Typography
         variant="h2"
-        sx={{ color: '#54ACDF',paddingTop:"3rem", fontSize: "2.25rem", fontWeight: 'bold', marginBottom: 2, textAlign: 'center' }}
+        sx={{
+          color: "#54ACDF",
+          fontSize: { xs: "1.75rem", md: "2.5rem" },
+          fontWeight: "bold",
+          textAlign: "center",
+          mt: 4,
+          mb: 2,
+        }}
       >
         WE ARE WHERE YOU NEED US
       </Typography>
 
       {/* Subtitle Section */}
       <Typography
+        className="coverage_para"
         variant="h6"
-        sx={{ marginBottom: 4, padding: "0px 130px", textAlign: 'center', lineHeight: 1.5, fontSize: "1rem", color: "#000", fontWeight: "700" }}
-      >
-        We excel in providing comprehensive technical expertise, offering Level 0 to Level 3 engineering support with 24/7 availability across diverse regions. Our goal is to ensure swift service delivery within 4 hours or by the next business day (NBD) in numerous locations. Whether in major cities, smaller towns, or even remote areas, our extensive network guarantees exceptional support tailored to your needs.
+        sx={{
+          px: { xs: 2, sm: 4, md: 0 },
+          textAlign: "center",
+          lineHeight: 1.5,
+          fontSize: { xs: "0.9rem", md: "1.2rem" },
+          color: "#000",
+          paddingX: {
+            xs: 2,
+            sm: 3,
+            md: 25,
+          },
 
+          fontWeight: 700,
+        }}
+      >
+        We excel in providing comprehensive technical expertise, offering Level
+        0 to Level 3 engineering support with 24/7 availability across diverse
+        regions.
       </Typography>
 
       {/* ASIA MAP Section */}
-      <Box sx={{ backgroundColor: '#54ACDF', padding: 1, marginBottom: 4 }}>
+      <Box sx={{ backgroundColor: "#54ACDF", py: 2, my: 4 }}>
         <Typography
           variant="h5"
-          sx={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}
+          sx={{
+            color: "#fff",
+            fontWeight: "bold",
+            textAlign: "center",
+            fontSize: { xs: "1.2rem", md: "1.5rem" },
+          }}
         >
           ASIA MAP
         </Typography>
       </Box>
 
-      <Grid container spacing={4} sx={{ marginBottom: 4 }}>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 0,color:"#54ACDF" }}>
+      {/* Asia Regions */}
+      <Grid container spacing={4} sx={{ px: { xs: 2, md: 10 } }}>
+        <Grid item xs={12} md={6}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              color: "#54ACDF",
+              textAlign: "center",
+              mb: 1,
+            }}
+          >
             CENTRAL ASIA
           </Typography>
           <List>
-            {['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Turkmenistan'].map((item, index) => (
-              <ListItem key={index} sx={{ paddingLeft: 0, display: 'flex', justifyContent: 'center' }}>
-                {item}
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
-
-
-        <Grid item xs={12} md={6} sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 0 ,color:"#54ACDF" }}>
-            SOUTH EASTERN ASIA
-          </Typography>
-          <List>
-            {['Japan', 'South Korea', 'Taiwan', 'Singapore', 'India', 'Thailand', 'China'].map((item, index) => (
-              <ListItem key={index} sx={{ paddingLeft: 0 }}>
-                {item}
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
-      </Grid>
-
-      {/* EUROPE MAP Section */}
-      <Box sx={{ backgroundColor: '#54ACDF', padding: 1, marginBottom: 4 }}>
-        <Typography
-          variant="h5"
-          sx={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}
-        >
-          EUROPE MAP
-        </Typography>
-      </Box>
-
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6} sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 0 ,color:"#54ACDF" }}>
-            EASTERN EUROPE
-          </Typography>
-          <List>
-            {['Hungary', 'Belarus', 'Hungary', 'Greece', 'Latvia', 'Holland', 'Spain', 'Denmark'].map(
+            {["Kazakhstan", "Kyrgyzstan", "Tajikistan", "Turkmenistan"].map(
               (item, index) => (
-                <ListItem key={index} sx={{ paddingLeft: 0 }}>
+                <ListItem key={index} sx={{ justifyContent: "center" }}>
                   {item}
                 </ListItem>
               )
@@ -160,24 +131,91 @@ const Coverage = () => {
           </List>
         </Grid>
 
-        <Grid item xs={12} md={6} sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 0 ,color:"#54ACDF" }}>
+        <Grid item xs={12} md={6}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              color: "#54ACDF",
+              textAlign: "center",
+              mb: 1,
+            }}
+          >
+            SOUTH EASTERN ASIA
+          </Typography>
+          <List>
+            {["Japan", "South Korea", "Taiwan", "Singapore", "India"].map(
+              (item, index) => (
+                <ListItem key={index} sx={{ justifyContent: "center" }}>
+                  {item}
+                </ListItem>
+              )
+            )}
+          </List>
+        </Grid>
+      </Grid>
+
+      {/* EUROPE MAP Section */}
+      <Box sx={{ backgroundColor: "#54ACDF", py: 2, my: 4 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#fff",
+            fontWeight: "bold",
+            textAlign: "center",
+            fontSize: { xs: "1.2rem", md: "1.5rem" },
+          }}
+        >
+          EUROPE MAP
+        </Typography>
+      </Box>
+
+      {/* Europe Regions */}
+      <Grid container spacing={4} sx={{ px: { xs: 2, md: 10 } }}>
+        <Grid item xs={12} md={6}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              color: "#54ACDF",
+              textAlign: "center",
+              mb: 1,
+            }}
+          >
+            EASTERN EUROPE
+          </Typography>
+          <List>
+            {["Hungary", "Belarus", "Greece", "Latvia"].map((item, index) => (
+              <ListItem key={index} sx={{ justifyContent: "center" }}>
+                {item}
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              color: "#54ACDF",
+              textAlign: "center",
+              mb: 1,
+            }}
+          >
             WESTERN EUROPE
           </Typography>
           <List>
-            {['Germany', 'Italy', 'France', 'Denmark', 'Austria', 'Sweden', 'Poland', 'Norway'].map((item, index) => (
-              <ListItem key={index} sx={{ paddingLeft: 0 }}>
+            {["Germany", "Italy", "France", "Denmark"].map((item, index) => (
+              <ListItem key={index} sx={{ justifyContent: "center" }}>
                 {item}
               </ListItem>
             ))}
           </List>
         </Grid>
       </Grid>
+
+      {/* Footer */}
       <Footer />
     </Box>
   );

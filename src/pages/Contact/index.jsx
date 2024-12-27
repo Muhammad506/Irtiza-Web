@@ -1,5 +1,4 @@
 import { Box, TextField, Button, Grid, Typography } from "@mui/material";
-
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -8,6 +7,7 @@ const Contact = () => {
     event.preventDefault();
     // Form submission logic
   };
+
   return (
     <div>
       <Box
@@ -19,11 +19,24 @@ const Contact = () => {
         }}
       >
         <Navbar />
-        <Box className="contact_form " sx={{ paddingTop: "50px" }}>
-          <Grid container spacing={2}>
-            {/* First Grid - Replacing the Image with Text */}
+        <Box className="contact_form" sx={{ paddingTop: "50px" }}>
+          <Grid container spacing={2} alignItems="center">
+            {/* First Grid - Image */}
             <Grid item xs={12} md={6}>
-              <img src="/images/home/contact4.svg" alt="" />
+              <Box
+                sx={{
+                  textAlign: { xs: "center", md: "left" }, // Centered on small screens
+                }}
+              >
+                <img
+                  src="/images/home/contact4.svg"
+                  alt="Contact Illustration"
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </Box>
             </Grid>
 
             {/* Second Grid - Form Section */}
@@ -35,6 +48,7 @@ const Contact = () => {
                   marginBottom: "20px",
                   fontWeight: "bold",
                   color: "white",
+                  fontSize: { xs: "20px", md: "24px" },
                 }}
               >
                 Contact Us Today!
@@ -50,9 +64,6 @@ const Contact = () => {
                 <TextField
                   sx={{
                     marginBottom: "18px",
-                    "& .MuiInputBase-input": {
-                      color: "#54ACDF",
-                    },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
                         borderColor: "#54ACDF",
@@ -65,9 +76,6 @@ const Contact = () => {
                       },
                     },
                     "& .MuiFormLabel-root": {
-                      color: "#54ACDF",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
                       color: "#54ACDF",
                     },
                   }}
@@ -80,9 +88,6 @@ const Contact = () => {
                 <TextField
                   sx={{
                     marginBottom: "18px",
-                    "& .MuiInputBase-input": {
-                      color: "white",
-                    },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
                         borderColor: "#54ACDF",
@@ -95,9 +100,6 @@ const Contact = () => {
                       },
                     },
                     "& .MuiFormLabel-root": {
-                      color: "#54ACDF",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
                       color: "#54ACDF",
                     },
                   }}
@@ -110,9 +112,6 @@ const Contact = () => {
                 <TextField
                   sx={{
                     marginBottom: "18px",
-                    "& .MuiInputBase-input": {
-                      color: "#54ACDF",
-                    },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
                         borderColor: "#54ACDF",
@@ -125,9 +124,6 @@ const Contact = () => {
                       },
                     },
                     "& .MuiFormLabel-root": {
-                      color: "#54ACDF",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
                       color: "#54ACDF",
                     },
                   }}
@@ -140,9 +136,6 @@ const Contact = () => {
                 <TextField
                   sx={{
                     marginBottom: "18px",
-                    "& .MuiInputBase-input": {
-                      color: "#54ACDF",
-                    },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
                         borderColor: "#54ACDF",
@@ -155,39 +148,6 @@ const Contact = () => {
                       },
                     },
                     "& .MuiFormLabel-root": {
-                      color: "#54ACDF",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
-                      color: "#54ACDF",
-                    },
-                  }}
-                  fullWidth
-                  required
-                  id="phone"
-                  name="phone"
-                  label="Phone"
-                />
-                <TextField
-                  sx={{
-                    marginBottom: "18px",
-                    "& .MuiInputBase-input": {
-                      color: "#54ACDF",
-                    },
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        borderColor: "#54ACDF",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "#54ACDF",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "#54ACDF",
-                      },
-                    },
-                    "& .MuiFormLabel-root": {
-                      color: "#54ACDF",
-                    },
-                    "& .MuiInputLabel-root.Mui-focused": {
                       color: "#54ACDF",
                     },
                   }}
@@ -196,7 +156,6 @@ const Contact = () => {
                   label="Message"
                   multiline
                   rows={4}
-                  // defaultValue="Default Value"
                 />
                 <Button
                   variant="contained"
@@ -218,27 +177,28 @@ const Contact = () => {
           </Grid>
         </Box>
       </Box>
+
+      {/* Overlapping Section */}
       <Box
         sx={{
           position: "relative", // Allow precise positioning
           zIndex: 1, // Ensure it appears above the footer
-          borderBottomLeftRadius: "20px",
+          borderBottomLeftRadius: "30px",
           borderBottomRightRadius: "30px",
-          padding: "70px",
-          backgroundColor: "white",
+          padding: "60px",
+          backgroundColor: "#fff",
           overflow: "hidden",
-          marginBottom: "-48px", // Negative margin to overlap the footer
+          marginBottom: "-110px",
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={6}>
-            {/* Title */}
+          <Grid item xs={12} md={6}>
             <Typography
               variant="h4"
               sx={{
                 paddingTop: "20px",
                 color: "#000000",
-                fontSize: "37px",
+                fontSize: { xs: "24px", md: "37px" },
                 fontWeight: "800",
                 lineHeight: "43px",
                 marginBottom: "1rem",
@@ -246,12 +206,10 @@ const Contact = () => {
             >
               We are Trusted 50+ <br /> Countries Worldwide
             </Typography>
-
-            {/* Subheading */}
             <Typography
               variant="h5"
               sx={{
-                fontSize: "18px",
+                fontSize: { xs: "16px", md: "18px" },
                 fontWeight: "400",
                 fontFamily: "'Poppins', sans-serif",
                 color: "#000000",
@@ -261,17 +219,11 @@ const Contact = () => {
                 padding: "10px 0",
               }}
             >
-              Evo Primetech is a global IT services & solutions provider that
-              builds computing systems for clients by combining hardware,
-              software, networking, and business solutions such as CRM, ERP, and
-              AIFA for businesses of all sizes and industries. Our vast global
-              presence, quick and efficient methods, and state-of-the-art
-              solutions allow us to provide the best solutions at the right
-              time.
+              Evo Primetech is a global IT services & solutions provider...
             </Typography>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <img
               src="/images/home/mapimg.png"
               alt="Map Image"
@@ -285,14 +237,14 @@ const Contact = () => {
         </Grid>
       </Box>
 
-      {/* Footer Section */}
+      {/* Footer */}
       <Box
         sx={{
           backgroundColor: "white",
           padding: "20px 0",
-          borderTop: "1px solid #ddd", // Optional: subtle top border for footer
-          position: "relative", // Ensures stacking context
-          zIndex: 0, // Allows the upper box to overlap
+          borderTop: "1px solid #ddd",
+          position: "relative",
+          zIndex: 0,
         }}
       >
         <Footer />

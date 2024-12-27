@@ -1,31 +1,51 @@
-import  { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Box, Typography, Button, Grid, Paper, TextField, Card, CardMedia, Accordion, AccordionActions, AccordionSummary, AccordionDetails } from '@mui/material';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  Box,
+  Typography,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  // Card,
+  // CardMedia,
+  Accordion,
+  // AccordionActions,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+import Navbar from "../../components/Navbar";
+import ServiceCard from "../../components/ServiceCard";
+import Footer from "../../components/Footer";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddIcon from "@mui/icons-material/Add"; // Plus icon
+import RemoveIcon from "@mui/icons-material/Remove"; // Minus icon
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 const Home = () => {
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const sectionRef2 = useRef(null);
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const textRef = useRef(null);
   const sectionRefe = useRef(null);
   const buttonRef = useRef(null);
-  const sectionRef2 = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     // Form submission logic
   };
   useEffect(() => {
     // Get all elements with the class 'trigger' (elements that should animate when in view)
-    const triggers = document.querySelectorAll('.trigger');
+    const triggers = document.querySelectorAll(".trigger");
 
     // Create an IntersectionObserver to observe when elements come into view
     const observer = new IntersectionObserver(
@@ -33,7 +53,7 @@ const Home = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Add 'animate' class to trigger the animation when the element is in view
-            entry.target.classList.add('animate');
+            entry.target.classList.add("animate");
             observer.unobserve(entry.target); // Stop observing after it is in view
           }
         });
@@ -147,7 +167,9 @@ const Home = () => {
 
   useEffect(() => {
     if (sectionRefe.current) {
-      const elements = sectionRefe.current.querySelectorAll('.bottom_box_img_text');
+      const elements = sectionRefe.current.querySelectorAll(
+        ".bottom_box_img_text"
+      );
 
       gsap.fromTo(
         elements,
@@ -159,41 +181,50 @@ const Home = () => {
           stagger: 0.2, // Delay between animations of each element
           scrollTrigger: {
             trigger: sectionRefe.current,
-            start: 'top 80%', // Trigger when the top of the section is 80% from the top of the viewport
-            end: 'bottom 60%', // Animation runs until the bottom of the section reaches 60% of the viewport
-            toggleActions: 'play none none none', // Play animation only once
+            start: "top 80%", // Trigger when the top of the section is 80% from the top of the viewport
+            end: "bottom 60%", // Animation runs until the bottom of the section reaches 60% of the viewport
+            toggleActions: "play none none none", // Play animation only once
           },
         }
       );
     }
   }, []);
 
-
   return (
     <Box className="home">
       <Box className="nav-section">
         <Navbar />
-        <Box className="nav_content" sx={{ position: 'relative', width: '100%', textAlign: 'start', color: 'white', py: 25, px: 16 }}>
+        <Box
+          className="nav_content"
+          sx={{
+            position: "relative",
+            width: "100%",
+            textAlign: "start",
+            color: "white",
+            py: 25,
+            px: 16,
+          }}
+        >
           {/* Heading */}
           <Typography
             variant="body1"
             sx={{
               fontSize: "12px",
               letterSpacing: "2px",
-              fontWeight: 'bold',
+              fontWeight: "bold",
               mb: 2,
-              position: 'relative',
-              display: 'inline-block',
-              paddingLeft: '70px',
-              '&::before': {
+              position: "relative",
+              display: "inline-block",
+              paddingLeft: "70px",
+              "&::before": {
                 content: '""',
-                position: 'absolute',
-                left: '0',
-                top: '50%',
-                width: '50px',
-                height: '2px',
-                backgroundColor: '#54ACDF',
-                transform: 'translateY(-50%)',
+                position: "absolute",
+                left: "0",
+                top: "50%",
+                width: "50px",
+                height: "2px",
+                backgroundColor: "#54ACDF",
+                transform: "translateY(-50%)",
               },
             }}
             className="trigger above_content"
@@ -205,26 +236,26 @@ const Home = () => {
           <Typography
             variant="h1"
             sx={{
-              fontSize: { xs: '2rem', sm: '3rem', md: '3rem' },
-              fontWeight: 'bold',
+              fontSize: { xs: "2rem", sm: "3rem", md: "3rem" },
+              fontWeight: "bold",
               mb: 2,
               lineHeight: "3.125rem",
-              textTransform: 'capitalize',
+              textTransform: "capitalize",
               // fontFamily: 'Poppins',
             }}
             className="trigger center_content"
           >
             Delivering Excellence <br />
-            in Every <b style={{ color: '#54ACDF' }}>Service</b>
+            in Every <b style={{ color: "#54ACDF" }}>Service</b>
           </Typography>
 
           {/* Paragraph */}
           <Typography
             variant="body1"
             sx={{
-              fontSize: '0.813rem',
+              fontSize: "0.813rem",
               lineHeight: "1.25rem",
-              maxWidth: '800px',
+              maxWidth: "800px",
               mb: 4,
             }}
             className="trigger second_section_text3"
@@ -232,43 +263,42 @@ const Home = () => {
             We are committed to providing top-notch solutions tailored to your
             needs, with unmatched efficiency and responsiveness. At Evoprime,
             our philosophy is built on trust, quality, and innovation. Your
-            satisfaction is our priority, and we never compromise on our
-            values.
+            satisfaction is our priority, and we never compromise on our values.
           </Typography>
 
           {/* Buttons */}
-          <Box sx={{ display: 'flex', justifyContent: 'start', gap: 2 }}>
+          <Box sx={{ display: "flex", justifyContent: "start", gap: 2 }}>
             <Button
               variant="contained"
               sx={{
                 px: 4,
-                backgroundColor: 'black',
+                backgroundColor: "black",
                 py: 1.5,
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                display: 'flex',
-                alignItems: 'center',
+                fontSize: "0.9rem",
+                fontWeight: "600",
+                display: "flex",
+                alignItems: "center",
               }}
               className="trigger contact_btn"
             >
-              Explore More{' '}
-              <ArrowForwardIosIcon sx={{ ml: 1, fontSize: 'small' }} />
+              Explore More{" "}
+              <ArrowForwardIosIcon sx={{ ml: 1, fontSize: "small" }} />
             </Button>
             <Button
               variant="contained"
               sx={{
                 px: 4,
                 py: 1.5,
-                backgroundColor: '#54ACDF',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                display: 'flex',
-                alignItems: 'center',
+                backgroundColor: "#54ACDF",
+                fontSize: "0.9rem",
+                fontWeight: "600",
+                display: "flex",
+                alignItems: "center",
               }}
               className="trigger contact_btn "
             >
-              Get in Touch{' '}
-              <ArrowForwardIosIcon sx={{ ml: 1, fontSize: 'small' }} />
+              Get in Touch{" "}
+              <ArrowForwardIosIcon sx={{ ml: 1, fontSize: "small" }} />
             </Button>
           </Box>
         </Box>
@@ -362,11 +392,11 @@ const Home = () => {
                 }}
               >
                 Evoprime offers comprehensive Software and IT Managed Services,
-                end-to-end solutions, desktop services, support, and consultancy.
-                Our expertise spans IT support, computer networking, and
-                maintenance, ensuring seamless service from implementation to
-                disposal. We focus on providing a unified experience with a
-                consultative approach tailored to your needs.
+                end-to-end solutions, desktop services, support, and
+                consultancy. Our expertise spans IT support, computer
+                networking, and maintenance, ensuring seamless service from
+                implementation to disposal. We focus on providing a unified
+                experience with a consultative approach tailored to your needs.
               </Typography>
             </Box>
 
@@ -463,7 +493,6 @@ const Home = () => {
         </Grid>
       </Box>
 
-
       <Box className="marquee-container">
         <Box className="marquee">
           <Typography variant="h2" className="marquee_text">
@@ -481,591 +510,25 @@ const Home = () => {
         </Box>
       </Box>
 
-      <Box className="main_services">
-        <Grid container spacing={2} >
-          <Grid item xs={12} >
-
-            <Box sx={{ width: { xs: '100%' } }} className="main_service_content">
-              <Box ref={sectionRef2} sx={{ py: 5, backgroundColor: "#fff", textAlign: "start" }}>
-                {/* Title */}
-                <Typography ref={titleRef} className="line-before" sx={{ mb: 2, fontSize: "1.5rem", fontWeight: 600 }}>
-                  Our Services
-                </Typography>
-
-                {/* Subtitle */}
-                <Typography
-                  ref={subtitleRef}
-                  variant="h1"
-                  className="serv_sub_content"
-                  sx={{
-                    fontSize: "2.5rem",
-                    fontWeight: 800,
-                    lineHeight: 1.2,
-                    color: "#000",
-                  }}
-                >
-                  We Provide A Comprehensive Range <br />
-                  of Cutting-Edge IT Solutions
-                </Typography>
-              </Box>
-              <Grid container spacing={1} justifyContent="center" alignItems="center" >
-                <Grid item xs={12} sm={6} md={4} lg={3} >
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service1.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Global Development
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service2.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          App Development
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service4.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Resource on VA
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service5.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Cyber Security
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service6.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Wireless surveys
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service7.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Helpdesk Solution
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service8.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Website Development
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service9.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          IMAC Services
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service10.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Full Time Resource Allocation
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-
-
-
-
-
-
-                </Grid>
-
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service12.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Retail Service
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-
-
-
-
-
-
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service13.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Third Party Mantaince
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-
-
-
-
-
-
-                </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
-                  <Box mt={3} className="service_Box">
-                    <Card className="service_card" sx={{ maxWidth: 345, position: 'relative' }}>
-                      <CardMedia
-                        sx={{
-                          height: 300,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            position: 'absolute',
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: '50%',
-                            background: 'linear-gradient(to top, rgba(30, 93, 191, 1), transparent)', // Initial gradient (darker blue)
-                            transition: 'background 0.3s ease', // Smooth transition effect
-                          },
-                          '&:hover:before': {
-                            background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
-                          },
-                        }}
-                        image="/images/home/service11.jpg"
-                        title="blue gradient"
-                      >
-                        <Typography
-                          className="service_card_title"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 20,
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            zIndex: 1,
-                          }}
-                        >
-                          Resourse on SLA
-                        </Typography>
-                      </CardMedia>
-                    </Card>
-                  </Box>
-                </Grid>
-
-
-              </Grid>
-            </Box>
-
-          </Grid>
-        </Grid>
-
-
-
+      {/* Services section */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          // height: '100vh', // Full viewport height
+        }}
+      >
+        <ServiceCard />
       </Box>
+
       <Box className="whatsappicon">
         <img src="/images/home/whatsapp.svg" alt="" width={70} />
-
       </Box>
 
       <Box className="why_choose_section">
-
         <Typography
-          className='choose_section_text0'
+          className="choose_section_text0"
           sx={{
             textAlign: "center",
             paddingTop: "40px",
@@ -1077,31 +540,57 @@ const Home = () => {
             "&:after": {
               content: '""',
               display: "block",
-              width: "50px",        // Line width
-              height: "2px",        // Line thickness
+              width: "50px", // Line width
+              height: "2px", // Line thickness
               backgroundColor: "white",
               margin: "8px auto 0", // Spacing above and centering the line
-            }
+            },
           }}
         >
           Why Choose Us
         </Typography>
 
-        <Typography variant='h2' className='choose_section_text1' sx={{
-          paddingTop: "30px",
-          color: "white", fontSize: "45px", fontWeight: "bold", lineHeight: "50px", textAlign: "center"
-        }}>
-
+        <Typography
+          variant="h2"
+          className="choose_section_text1"
+          sx={{
+            paddingTop: "30px",
+            color: "white",
+            fontSize: "45px",
+            fontWeight: "bold",
+            lineHeight: "50px",
+            textAlign: "center",
+          }}
+        >
           Companies Excited With Our Solutions
         </Typography>
 
-        <Box className="choose_section_body" sx={{ paddingTop: "40px", px: "80px", paddingBottom: "40px" }}>
+        <Box
+          className="choose_section_body"
+          sx={{ paddingTop: "40px", px: "80px", paddingBottom: "40px" }}
+        >
           <Grid container spacing={2}>
             {[
-              { src: "/images/home/success.png", value: "120+", label: "Projects Completed" },
-              { src: "/images/home/rating-3.png", value: "50+", label: "Active Clients" },
-              { src: "/images/home/group-chat-1-1.png", value: "200+", label: "Expert Team" },
-              { src: "/images/home/rating-4.png", value: "50+", label: "Happy Clients" },
+              {
+                src: "/images/home/success.png",
+                value: "120+",
+                label: "Projects Completed",
+              },
+              {
+                src: "/images/home/rating-3.png",
+                value: "50+",
+                label: "Active Clients",
+              },
+              {
+                src: "/images/home/group-chat-1-1.png",
+                value: "200+",
+                label: "Expert Team",
+              },
+              {
+                src: "/images/home/rating-4.png",
+                value: "50+",
+                label: "Happy Clients",
+              },
             ].map((item, index) => (
               <Grid item xs={6} md={3} key={index}>
                 <Box sx={{ textAlign: "center" }}>
@@ -1117,7 +606,10 @@ const Home = () => {
                       },
                     }}
                   />
-                  <Typography className="project_user" sx={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+                  <Typography
+                    className="project_user"
+                    sx={{ fontSize: "1.5rem", fontWeight: "bold" }}
+                  >
                     {item.value}
                   </Typography>
                   <Typography sx={{ color: "white" }}>{item.label}</Typography>
@@ -1125,7 +617,6 @@ const Home = () => {
               </Grid>
             ))}
           </Grid>
-
 
           <Box sx={{ justifyContent: "center", width: "100%" }}>
             <Box className="bottom_image_box" sx={{}}>
@@ -1152,22 +643,23 @@ const Home = () => {
               </Box>
             </Box>
           </Box>
-
         </Box>
       </Box>
 
-      <Box className='faq_section_title' sx={{ marginTop: "220px", padding: "40px", borderRadius: "8px" }}>
+      <Box
+        className="faq_section_title"
+        sx={{ marginTop: "220px", padding: "40px", borderRadius: "8px" }}
+      >
         <Box
           sx={{
             display: "flex",
             justifyContent: "center", // Center horizontally
-            alignItems: "center",     // Center vertically
+            alignItems: "center", // Center vertically
             // height: "100vh",           // Ensure it takes the full viewport height
-            paddingBottom: "10px"
+            paddingBottom: "10px",
           }}
         >
           <Typography
-
             sx={{
               textAlign: "center",
               // paddingTop: "40px",
@@ -1189,8 +681,6 @@ const Home = () => {
             Talk About Something
           </Typography>
         </Box>
-
-
       </Box>
       <Box className="faq_section">
         <Typography
@@ -1204,77 +694,102 @@ const Home = () => {
             color: "#000",
           }}
         >
-          FAQ
+          Frequently Asked Questions
         </Typography>
         <Box sx={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <Accordion sx={{ marginBottom: "16px", border: "1px solid #ddd", borderRadius: "0px" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-              aria-controls="panel1-content"
-              id="panel1-header"
+          {[
+            {
+              question:
+                "How can your end-to-end solutions benefit my business?",
+              answer:
+                "We streamline IT processes, boost efficiency, and secure your IT infrastructure to drive success.",
+            },
+            {
+              question: "Do you offer on-site support?",
+              answer:
+                "Yes, we provide both on-site and remote support to promptly address IT issues.",
+            },
+            {
+              question: "How can you help with computer networking?",
+              answer:
+                "Our team designs, implements, and manages seamless networking solutions to enhance organizational communication and data transfer.",
+            },
+            {
+              question: "What sets your consultancy services apart?",
+              answer:
+                "We offer a consultative approach tailored to your business needs, challenges, and goals, ensuring alignment with your objectives.",
+            },
+            {
+              question:
+                "Do you offer maintenance support for IT infrastructure?",
+              answer:
+                "Yes, we ensure IT infrastructure health with updates, monitoring, and troubleshooting services.",
+            },
+            {
+              question: "How do you handle IT disposal responsibly?",
+              answer:
+                "We use eco-friendly practices to recycle or dispose of hardware, prioritizing data security and regulatory compliance.",
+            },
+            {
+              question: "What makes your desktop services stand out?",
+              answer:
+                "Optimized desktop performance with timely updates, security patches, and seamless remote assistance.",
+            },
+            {
+              question: "How can I get started?",
+              answer:
+                "Contact us via our website or phone for a consultation. We’ll discuss your needs and propose a tailored solution.",
+            },
+          ].map((item, index) => (
+            <Accordion
+              key={index}
+              expanded={expanded === `panel${index}`}
+              onChange={handleChange(`panel${index}`)}
               sx={{
-                background: "linear-gradient(45deg, #54ACDF, #7BC3E2)",
-                padding: "10px", borderRadius: "8px 8px 0 0"
+                marginBottom: "16px",
+                border: "1px solid #ddd",
+                borderRadius: "0px",
               }}
             >
-              <Typography sx={{ fontWeight: "bold", color: "white" }}>What is your service about?</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={{ backgroundColor: "#fafafa", padding: "16px", color: "#555" }}>
-              Our service provides top-notch digital solutions tailored to your business needs, ensuring
-              quality and efficiency in every project.
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion sx={{ marginBottom: "16px", border: "1px solid #ddd", borderRadius: "0px" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-              aria-controls="panel2-content"
-              id="panel2-header"
-              sx={{ background: "linear-gradient(45deg, #54ACDF, #7BC3E2)", padding: "10px", borderRadius: "8px 8px 0 0" }}
-            >
-              <Typography sx={{ fontWeight: "bold", color: "white" }}>How can I contact your team?</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={{ backgroundColor: "#fafafa", padding: "16px", color: "#555" }}>
-              You can reach out to us via email, phone, or our website`s contact form. Our team is available
-              to assist you with any inquiries.
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion
-            defaultExpanded
-            sx={{ marginBottom: "16px", border: "1px solid #ddd", borderRadius: "0px" }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
-              aria-controls="panel3-content"
-              id="panel3-header"
-              sx={{ background: "linear-gradient(45deg, #54ACDF, #7BC3E2)", padding: "10px", borderRadius: "8px 8px 0 0" }}
-            >
-              <Typography sx={{ fontWeight: "bold", color: "white" }}>What are your pricing plans?</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={{ backgroundColor: "#fafafa", padding: "16px", color: "#555" }}>
-              We offer flexible pricing plans that cater to startups, mid-sized businesses, and large
-              enterprises. Contact us for a customized quote.
-            </AccordionDetails>
-            <AccordionActions sx={{ justifyContent: "flex-end", padding: "16px" }}>
-              <Button variant="outlined" color="secondary" sx={{ marginRight: "8px" }}>
-                Learn More
-              </Button>
-              <Button variant="contained" color="primary">
-                Contact Us
-              </Button>
-            </AccordionActions>
-          </Accordion>
+              <AccordionSummary
+                expandIcon={
+                  expanded === `panel${index}` ? (
+                    <RemoveIcon sx={{ color: "white" }} />
+                  ) : (
+                    <AddIcon sx={{ color: "white" }} />
+                  )
+                }
+                aria-controls={`panel${index}-content`}
+                id={`panel${index}-header`}
+                sx={{
+                  background: "linear-gradient(45deg, #54ACDF, #7BC3E2)",
+                  padding: "10px",
+                  borderRadius: "8px 8px 0 0",
+                }}
+              >
+                <Typography sx={{ fontWeight: "bold", color: "white" }}>
+                  {item.question}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails
+                sx={{
+                  backgroundColor: "#fafafa",
+                  padding: "16px",
+                  color: "#555",
+                }}
+              >
+                {item.answer}
+              </AccordionDetails>
+            </Accordion>
+          ))}
         </Box>
       </Box>
-
 
       <Box className="contact_form">
         <Grid container spacing={2}>
           {/* First Grid - Replacing the Image with Text */}
           <Grid item xs={12} md={6}>
             <img src="/images/home/contact4.svg" alt="" />
-
           </Grid>
 
           {/* Second Grid - Form Section */}
@@ -1290,7 +805,14 @@ const Home = () => {
             >
               Contact Us Today!
             </Typography>
-            <form onSubmit={handleSubmit} style={{ backgroundColor: "white", padding: "30px", borderRadius: "15px" }}>
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                backgroundColor: "white",
+                padding: "30px",
+                borderRadius: "15px",
+              }}
+            >
               <TextField
                 sx={{
                   marginBottom: "18px",
@@ -1440,7 +962,7 @@ const Home = () => {
                 label="Message"
                 multiline
                 rows={4}
-              // defaultValue="Default Value"
+                // defaultValue="Default Value"
               />
               <Button
                 variant="contained"
@@ -1462,9 +984,7 @@ const Home = () => {
         </Grid>
       </Box>
       <Footer />
-
     </Box>
-
   );
 };
 

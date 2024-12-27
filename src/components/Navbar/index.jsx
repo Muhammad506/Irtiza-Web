@@ -2,7 +2,7 @@ import React from "react";
 import {
   Box,
   Button,
-  Typography,
+  // Typography,
   useMediaQuery,
   useTheme,
   Drawer,
@@ -21,6 +21,7 @@ const routes = [
   { name: "About Us", route: "/about" },
   { name: "Services", route: "/services" },
   { name: "Coverage", route: "/coverage" },
+  { name: "Contact us", route: "/contact" },
 ];
 
 const Navbar = () => {
@@ -47,11 +48,7 @@ const Navbar = () => {
     >
       {/* Logo */}
       <Box className="logo_img">
-        <img
-          src="/images/only_text.png"
-          alt="Logo"
-          style={{ maxWidth: "20rem" }}
-        />
+        <img src="/images/logo.png" alt="Logo" style={{ maxWidth: "20rem" }} />
       </Box>
 
       {/* Responsive Navigation */}
@@ -138,11 +135,13 @@ const Navbar = () => {
           </ul>
           <SearchIcon fontSize="medium" sx={{ color: "white", ml: 2 }} />
           <Button
+            component={Link} // This makes the button behave like a Link
+            to="/contact" // This specifies the route
             variant="contained"
             sx={{
               p: 1.5,
               ml: 2,
-              background: "black",
+              background: "#54ACDF",
               fontWeight: "bold",
               display: "flex",
               alignItems: "center",
