@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"; // Import motion from framer-motion
-import { div } from "framer-motion/client";
+// import { div } from "framer-motion/client";
 
 const AboutBar = () => {
   const slides = [
@@ -11,6 +11,7 @@ const AboutBar = () => {
 
   return (
     <main className="bg-gradient-to-tr from-[#00CFF8] to-[#1a73e8] ">
+  
       <motion.div
         className="flex justify-center items-center py-8 px-4 md:px-8 lg:px-16"
         initial={{ opacity: 0, scale: 0.8 }} // Initial state: hidden and scaled down
