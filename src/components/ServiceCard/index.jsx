@@ -233,7 +233,7 @@ const ServicesCards = () => {
                             background: 'linear-gradient(to top, rgba(84, 172, 223, 1), transparent)', // Hover gradient (lighter blue)
                           },
                         }}
-                        image="/images/home/service5.jpg"
+                        image="/images/home/cybersecurityimg.jpeg"
                         title="blue gradient"
                       >
                         <Typography

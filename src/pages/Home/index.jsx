@@ -203,7 +203,7 @@ const Home = () => {
             width: "100%",
             textAlign: "start",
             color: "white",
-            py: 25,
+            py: 18,
             px: 16,
           }}
         >
@@ -615,38 +615,14 @@ const Home = () => {
           </Grid>
 
 
-          <Box sx={{ justifyContent: "center", width: "100%" }}>
-            <Box className="bottom_image_box" sx={{}}>
-              {/* <img  src="/images/home/Group-41399.png" alt="" width={500}  /> */}
-              <Box
-                ref={sectionRefe}
-                sx={{
-                  textAlign: "center",
-                  padding: "16px",
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                <Typography variant="h3" className="bottom_box_img_text">
-                  The Ultimate Solution
-                </Typography>
-                <Typography
-                  variant="h3"
-                  className="bottom_box_img_text"
-                  sx={{ marginTop: "8px" }}
-                >
-                  For Your Digital Needs
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
+         
 
         </Box>
       </Box>
 
       <Box
         className="faq_section_title"
-        sx={{ marginTop: "220px", padding: "40px", borderRadius: "8px" }}
+        sx={{ marginTop: "50px", padding: "40px", borderRadius: "8px" }}
       >
         <Box
           sx={{
@@ -654,7 +630,7 @@ const Home = () => {
             justifyContent: "center", // Center horizontally
             alignItems: "center", // Center vertically
             // height: "100vh",           // Ensure it takes the full viewport height
-            paddingBottom: "10px",
+            paddingBottom: "5px",
           }}
         >
           <Typography

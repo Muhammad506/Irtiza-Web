@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Bar = () => {
   return (
-    <main className="py-4">
+    <main className="py-2">
       <motion.div
         className="relative bg-[url('/images/services/barBg.avif')] h-40 bg-cover bg-center flex items-center justify-center text-center text-white px-4 sm:px-6 md:px-10"
         initial={{ opacity: 0 }}

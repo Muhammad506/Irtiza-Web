@@ -1,11 +1,48 @@
 import { Box, TextField, Button, Grid, Typography } from "@mui/material";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { useState } from "react";
 
 const Contact = () => {
-  const handleSubmit = (event) => {
+  const [formValues, setFormValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Form submission logic
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formValues),
+      });
+
+      if (response.ok) {
+        setSuccessMessage("Thank you for submitting the form."); // Set success message
+        setFormValues({
+          firstName: "",
+          lastName: "",
+          email: "",
+          message: "",
+        }); // Clear the form fields
+        setTimeout(() => setSuccessMessage(""), 5000); // Clear message after 5 seconds
+      } else {
+        alert("Failed to submit form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while submitting the form.");
+    }
   };
 
   return (
@@ -84,6 +121,8 @@ const Contact = () => {
                   id="firstName"
                   name="firstName"
                   label="First Name"
+                  value={formValues.firstName}
+                  onChange={handleInputChange}
                 />
                 <TextField
                   sx={{
@@ -108,6 +147,8 @@ const Contact = () => {
                   id="lastName"
                   name="lastName"
                   label="Last Name"
+                  value={formValues.lastName}
+                  onChange={handleInputChange}
                 />
                 <TextField
                   sx={{
@@ -132,6 +173,8 @@ const Contact = () => {
                   id="email"
                   name="email"
                   label="Email"
+                  value={formValues.email}
+                  onChange={handleInputChange}
                 />
                 <TextField
                   sx={{
@@ -152,10 +195,13 @@ const Contact = () => {
                     },
                   }}
                   fullWidth
-                  id="outlined-multiline-static"
                   label="Message"
+                  id="message"
+                  name="message"
                   multiline
                   rows={4}
+                  value={formValues.message}
+                  onChange={handleInputChange}
                 />
                 <Button
                   variant="contained"
@@ -172,83 +218,25 @@ const Contact = () => {
                 >
                   Submit Form
                 </Button>
+                {/* Success Message */}
+                {successMessage && (
+                  <Typography
+                    sx={{
+                      marginTop: "15px",
+                      color: "#54acdf",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {successMessage}
+                  </Typography>
+                )}
               </form>
             </Grid>
           </Grid>
         </Box>
       </Box>
-
-      {/* Overlapping Section */}
-      <Box
-        sx={{
-          position: "relative", // Allow precise positioning
-          zIndex: 1, // Ensure it appears above the footer
-          borderBottomLeftRadius: "30px",
-          borderBottomRightRadius: "30px",
-          padding: "60px",
-          backgroundColor: "#fff",
-          overflow: "hidden",
-          marginBottom: "-110px",
-        }}
-      >
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h4"
-              sx={{
-                paddingTop: "20px",
-                color: "#000000",
-                fontSize: { xs: "24px", md: "37px" },
-                fontWeight: "800",
-                lineHeight: "43px",
-                marginBottom: "1rem",
-              }}
-            >
-              We are Trusted 50+ <br /> Countries Worldwide
-            </Typography>
-            <Typography
-              variant="h5"
-              sx={{
-                fontSize: { xs: "16px", md: "18px" },
-                fontWeight: "400",
-                fontFamily: "'Poppins', sans-serif",
-                color: "#000000",
-                lineHeight: "1.5",
-                letterSpacing: "0.5px",
-                textAlign: "justify",
-                padding: "10px 0",
-              }}
-            >
-              Evo Primetech is a global IT services & solutions provider...
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <img
-              src="/images/home/mapimg.png"
-              alt="Map Image"
-              style={{
-                width: "100%",
-                height: "auto",
-                objectFit: "cover",
-              }}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-
-      {/* Footer */}
-      <Box
-        sx={{
-          backgroundColor: "white",
-          padding: "20px 0",
-          borderTop: "1px solid #ddd",
-          position: "relative",
-          zIndex: 0,
-        }}
-      >
-        <Footer />
-      </Box>
+      <Footer />
     </div>
   );
 };

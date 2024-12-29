@@ -14,7 +14,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-16 lg:px-24">
+        <div className="relative z-10 flex flex-col justify-center h-97% px-8 py-16 md:px-16 lg:px-24">
           {/* Heading with animation */}
           <motion.h1
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-wide"

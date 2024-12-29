@@ -1,5 +1,7 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { motion } from "framer-motion";
+
 import { Box, Typography, Grid, List, ListItem } from "@mui/material";
 
 const Coverage = () => {
@@ -21,35 +23,31 @@ const Coverage = () => {
           }}
         >
           {/* Heading */}
-          <Typography
-            variant="h4"
-            sx={{
-              fontSize: { xs: "1.5rem", md: "3rem" },
-              fontWeight: "800",
-              mb: { xs: 1, md: 2 },
-            }}
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-wide"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
           >
-            Our Coverage
-          </Typography>
+            Coverage
+          </motion.h1>
 
           {/* Subheading */}
-          <Typography
-            variant="body1"
-            sx={{
-              mx: { xs: 2, sm: 4, md: 0 },
-              fontSize: { xs: "0.75rem",sm:"0.8rem", md: "1.25rem" },
-              fontWeight: "300",
-              lineHeight: 1.5,
-              pr: { md: 35 },
-              
-              textAlign: { xs: "center", md: "justify" },
-              maxWidth: "800px",
+          <motion.p
+            className="text-sm md:text-base lg:text-lg max-w-xl text-justify"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+              type: "spring",
+              stiffness: 100,
             }}
           >
             At Evoprime, we are committed to delivering unparalleled global
             support through our network of 1,200+ engineers and consultants
             across EMEA, APAC, and North America.
-          </Typography>
+            </motion.p>
         </Box>
       </Box>
 
